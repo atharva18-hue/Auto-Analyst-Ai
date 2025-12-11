@@ -1,4 +1,4 @@
-# app.py — main Streamlit entrypoint (updated to call data_cleaning.render_data_cleaning)
+# app.py — main Streamlit entrypoint (clean & fixed version)
 import streamlit as st
 from data_upload import render_data_upload
 from data_cleaning import render_data_cleaning
@@ -6,6 +6,7 @@ from eda import render_eda
 from automl import render_automl
 from about import render_about
 from nl2sql import render_nl2sql
+
 # ---------------------------
 # Page config
 # ---------------------------
@@ -16,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# theme / inline CSS (kept same as before)
+# theme / inline CSS
 THEME = {
     "primary": "#2563EB",
     "accent": "#06B6D4",
@@ -40,11 +41,11 @@ st.markdown(
     .app-subtitle {{ margin:0; font-size:13px; color:{THEME['muted']}; margin-top:6px; }}
     .card {{ background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006)); padding:18px; border-radius:12px; box-shadow: 0 8px 30px rgba(2,6,23,0.45); border: 1px solid rgba(255,255,255,0.02); }}
     section[data-testid="stSidebar"] > div:first-child {{ padding: 16px; margin: 8px; border-radius: 14px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007)); border: 1px solid rgba(255,255,255,0.02); box-shadow: 0 10px 30px rgba(2,6,23,0.35); }}
-    [data-testid="stSidebar"] .stRadio > div label {{ display:flex; align-items:center; gap:10px; width:100%; padding:10px 12px; margin-bottom:8px; border-radius:10px; cursor:pointer; color:{THEME['text']}; background: transparent; border: 1px solid rgba(255,255,255,0.03); transition: transform 0.12s ease, box-shadow 0.12s ease; }}
+    [data-testid="stSidebar"] .stRadio > div label {{ display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;margin-bottom:8px;border-radius:10px;cursor:pointer;color:{THEME['text']};background:transparent;border:1px solid rgba(255,255,255,0.03);transition:transform 0.12s ease,box-shadow 0.12s ease;}}
     [data-testid="stSidebar"] input[type="radio"] {{ display:none; }}
     [data-testid="stSidebar"] .stRadio > div label[aria-checked="true"] {{ background: linear-gradient(90deg, {THEME['primary']}, {THEME['accent']}); color: white !important; border: none; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(2,6,23,0.45); }}
     .feature-tile {{ padding:14px; border-radius:12px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.02); }}
-    .feature-icon {{ width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); font-size:20px; }}
+    .feature-icon {{ width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); font-size:20px;}}
     </style>
     """,
     unsafe_allow_html=True,
@@ -62,22 +63,22 @@ st.markdown(
         <p class="app-subtitle">📤 Upload • 🧹 Clean • 📊 Explore • 🖼️ Visualize</p>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <div style="font-size:13px;color: #9CA3AF;">Built for fast analysis</div>
+        <div style="font-size:13px;color:#9CA3AF;">Built for fast analysis</div>
       </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-# Sidebar
+# Sidebar setup
 st.sidebar.markdown("")
 st.sidebar.markdown(
     """
     <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
       <div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background: linear-gradient(180deg, #2563EB, #06B6D4);color:white;font-weight:700;">AI</div>
       <div style="display:flex;flex-direction:column;">
-        <div style="font-size:12px;color: #9CA3AF;">Project</div>
-        <div style="font-size:13px;color: #E6EEF8;font-weight:600;">AutoAnalyst AI</div>
+        <div style="font-size:12px;color:#9CA3AF;">Project</div>
+        <div style="font-size:13px;color:#E6EEF8;font-weight:600;">AutoAnalyst AI</div>
       </div>
     </div>
     """,
@@ -88,23 +89,26 @@ menu_items = [
     ("🏠 Home", "Home"),
     ("📥 Data Upload", "Data Upload"),
     ("🧹 Data Cleaning", "Data Cleaning"),
-    ("📈 EEDA", "EDA"),
+    ("📈 EDA", "EDA"),
     ("🤖 AutoML", "AutoML"),
     ("🗣️ NL → SQL", "NL → SQL"),
     ("ℹ️ About", "About"),
 ]
 labels = [item[0] for item in menu_items]
-page_label = st.sidebar.radio("", labels, index=0, key="ui_menu")
+
+# 👇 FIXED: Non-empty label, so radio widget works without error
+page_label = st.sidebar.radio("Menu", labels, index=0, key="ui_menu", label_visibility="collapsed")
+
 label_to_page = {item[0]: item[1] for item in menu_items}
 page = label_to_page.get(page_label, "Home")
 
-# 🔥 DARK SIDEBAR FOOTER
+# Dark footer
 st.sidebar.markdown(
     '<div style="margin-top:12px;font-size:12px;color:#0f172a;font-weight:600;text-align:center">@2025 Atharva Chavhan</div>',
     unsafe_allow_html=True
 )
 
-# Helper renderers used on Home
+# Helper renderers
 def feature_tile(icon, title, desc):
     st.markdown(
         f"""
