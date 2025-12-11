@@ -4,30 +4,30 @@
 AutoAnalyst AI is an end-to-end Streamlit application that transforms raw datasets into insights, models, and SQL — fast, accurate, and explainable.  
 Upload a dataset and AutoAnalyst AI delivers:
 
-✅ Cleaned + prepared data  
-📊 Automated Exploratory Data Analysis (EDA)  
-📈 Interactive visual insights  
-🤖 Guided AutoML (classification & regression)  
-💬 Natural Language → SQL translation  
-📤 Easy exporting of data, SQL, and models  
+ Cleaned + prepared data  
+ Automated Exploratory Data Analysis (EDA)  
+ Interactive visual insights  
+ Guided AutoML (classification & regression)  
+ Natural Language → SQL translation  
+ Easy exporting of data, SQL, and models  
 
 ---
 
-## ✨ Features
+##  Features
 
-### 📁 Data Upload
+###  Data Upload
 - Supports **CSV** & **Excel** (preview & basic stats)  
 - Instant dataset preview  
 - Session-based data storage  
 - Clear/reset dataset option
 
-### 🧹 Simple Data Cleaning
+###  Simple Data Cleaning
 - Drops rows containing missing values  
 - Optional column dropping  
 - Cleaning audit: rows removed, columns dropped, before/after shape  
 - Cleaned output stored as `__cleaned_df__`
 
-### 📊 Visual EDA
+###  Visual EDA
 - Summary statistics  
 - Missing-value heatmap  
 - Correlation matrix (with ID-column filtering)  
@@ -35,12 +35,12 @@ Upload a dataset and AutoAnalyst AI delivers:
 - Category distributions  
 - Human-like narrative summary highlighting key insights
 
-### 📈 Interactive Visualizations
+###  Interactive Visualizations
 - Histograms, boxplots, scatter plots, bar charts  
 - Correlation and pairwise views  
 - Dashboard-ready charts and exportable images
 
-### 🤖 AutoML Pipeline
+###  AutoML Pipeline
 - Support for classification & regression workflows  
 - Choose target variable and features  
 - Train models (Logistic Regression, Random Forest, etc.)  
@@ -48,21 +48,21 @@ Upload a dataset and AutoAnalyst AI delivers:
 - Feature importance visualizations  
 - Predict on new data and export trained models
 
-### 💬 Natural Language → SQL
+###  Natural Language → SQL
 - Translate English queries (single-table focus) into SQL  
 - Support for WHERE, GROUP BY, ORDER BY, LIMIT, aggregations  
 - Fuzzy column matching for tolerant parsing  
 - Optional sandboxed execution using SQLite for validation  
 - Download generated SQL
 
-### 📤 Export System
+###  Export System
 - Download cleaned datasets (CSV)  
 - Download generated SQL (.sql)  
 - Export trained models (pickle)
 
 ---
 
-## 🏗️ Tech Stack
+##  Tech Stack
 
 - **Frontend / App:** Streamlit  
 - **Data Processing:** pandas, numpy  
@@ -73,7 +73,7 @@ Upload a dataset and AutoAnalyst AI delivers:
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -96,7 +96,7 @@ streamlit run app.py
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 ```bash
 AutoAnalyst-AI/
 ├── app.py                # Main Streamlit application (routing + UI)
@@ -112,7 +112,7 @@ AutoAnalyst-AI/
 
 ---
 
-## 📊 Example Workflow
+##  Example Workflow
 
 1) Upload your dataset (CSV/Excel) in the Data Upload section.
 2) Clean the data by dropping missing-value rows or removing unnecessary columns.
@@ -123,7 +123,14 @@ AutoAnalyst-AI/
 
 ---
 
-##📜 License
+## License
 This project is licensed under the MIT License.
 You are free to use, modify, and distribute this software with attribution.
+
+---------
+
+## Author
+
+Atharva Chavhan
+Gmail- atharvachavhan18@gmail.com
 
