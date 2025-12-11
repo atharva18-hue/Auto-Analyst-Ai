@@ -13,6 +13,12 @@ Upload a dataset and AutoAnalyst AI delivers:
 
 ---
 
+## Project Deploy
+
+https://auto-analyst-ai.streamlit.app/
+
+----------
+
 ##  Features
 
 ###  Data Upload
